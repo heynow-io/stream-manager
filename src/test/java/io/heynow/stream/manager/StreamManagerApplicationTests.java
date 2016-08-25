@@ -1,5 +1,6 @@
-package io.heynow;
+package io.heynow.stream.manager;
 
+import io.heynow.stream.manager.StreamManagerApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
