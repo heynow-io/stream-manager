@@ -1,4 +1,4 @@
-package io.heynow.stream.manager;
+package io.heynow.stream.manager.manager;
 
 import io.heynow.stream.manager.StreamManagerApplication;
 import org.junit.Test;
