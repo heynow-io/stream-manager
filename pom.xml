@@ -28,6 +28,16 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.heynow</groupId>
+                <artifactId>stream-manager-model</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
