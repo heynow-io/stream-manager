@@ -7,5 +7,4 @@ public class Consumer {
 
     private String name;
     private String stepId;
-    private Consumer consumer;
 }
