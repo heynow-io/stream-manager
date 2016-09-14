@@ -11,9 +11,9 @@ public class Note {
     private Map<String, Object> payload;
 
 
-    public Consumer proceed(){
+    public Consumer proceed() {
         ProcessingModel processingModel = this.processingModel.getNextProcessingModel();
-        this.processingModel=processingModel;
+        this.processingModel = processingModel;
         return processingModel.getCurrent();
     }
 }
