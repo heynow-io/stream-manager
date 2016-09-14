@@ -1,4 +1,4 @@
-package io.heynow.stream.manager.model;
+package io.heynow.stream.manager.client.model;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ public class ProcessingModel {
 
     private String eventSource;
     private String eventType;
-    private String streamId;
+    private Long streamId;
     private List<Consumer> consumers;
 
     public ProcessingModel getNextProcessingModel() {
