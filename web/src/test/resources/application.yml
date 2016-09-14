@@ -1,0 +1,4 @@
+spring:
+  datasource.url: jdbc:h2:file:./target/stream-manager.h2
+  jpa:
+    hibernate.ddl-auto: create-drop
