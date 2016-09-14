@@ -7,21 +7,21 @@ import java.util.Arrays;
 
 public class NoteTest {
 
-    private static final String CONSUMER_ONE = "1";
-    private static final String CONSUMER_TWO = "2";
+    private static final Long CONSUMER_ONE = 1L;
+    private static final Long CONSUMER_TWO = 2L;
 
     @Test
     public void testCurrentConsumer() {
         Note note = getNote();
-        Assert.assertEquals(CONSUMER_ONE, note.getProcessingModel().getCurrent().getName());
+        Assert.assertEquals("One", note.getProcessingModel().getCurrent().getName());
     }
 
     @Test
     public void testProceed() {
         Note note = getNote();
         Consumer consumer = note.proceed();
-        Assert.assertEquals(CONSUMER_TWO, note.getProcessingModel().getCurrent().getName());
-        Assert.assertEquals(CONSUMER_TWO, consumer.getName());
+        Assert.assertEquals("Two", note.getProcessingModel().getCurrent().getName());
+        Assert.assertEquals("Two", consumer.getName());
     }
 
     @Test(expected = IllegalStateException.class)
@@ -35,8 +35,8 @@ public class NoteTest {
         Note note = new Note();
         ProcessingModel model = new ProcessingModel();
         model.setConsumers(Arrays.asList(
-                new Consumer(CONSUMER_ONE, CONSUMER_ONE),
-                new Consumer(CONSUMER_TWO, CONSUMER_TWO)
+                new Consumer(CONSUMER_ONE, "One"),
+                new Consumer(CONSUMER_TWO, "Two")
         ));
         note.setProcessingModel(model);
         return note;

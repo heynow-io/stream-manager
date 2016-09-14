@@ -1,9 +1,9 @@
 package io.heynow.stream.manager.client.manager.web.service;
 
 import io.heynow.stream.manager.client.manager.TestsBase;
+import io.heynow.stream.manager.client.web.domain.Node;
 import io.heynow.stream.manager.client.web.domain.Observable;
 import io.heynow.stream.manager.client.web.service.TreeService;
-import io.heynow.stream.manager.client.web.domain.Node;
 import org.junit.Test;
 
 import java.util.List;
