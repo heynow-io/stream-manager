@@ -26,7 +26,7 @@ public class StreamServiceTest extends TestsBase {
     NodeDao nodeDao;
 
     @Test
-    public void shouldCreateStream() {
+    public void shouldCreateStreamAndObservables() {
         Stream stream = new Stream();
         stream.setName("some-stream");
         stream.setDescription("doing nothing really");
@@ -67,8 +67,9 @@ public class StreamServiceTest extends TestsBase {
 
         List<ProcessingModel> processingModels = streamService.getProcessingModels("queue", "something");
         assertThat(processingModels).hasSize(1);
-//        streamService.deleteStream();
-//        streamService.getProcessingModels()
+        assertThat(processingModels.get(0).getConsumers()).extracting("name").contains(null, "buffer", "mapper", "merger", "mailer");
+
+        streamService.deleteStream(stream.getId());
     }
 
 

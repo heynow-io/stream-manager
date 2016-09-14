@@ -60,8 +60,13 @@ public class StreamService {
                 .collect(toList());
     }
 
+    @Transactional
     public void deleteStream(Long id) {
-        streamDao.delete(id);
+        getStream(id).ifPresent(stream -> {
+            observableDao.deleteByStream(stream);
+            treeService.walkTreeFromLeafs(stream.getRootNode(), nodeDao::delete);
+            streamDao.delete(stream);
+        });
     }
 
     private ProcessingModel prepareProcessingModel(Observable observable) {
