@@ -29,6 +29,40 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <scm>
+        <url>https://github.com/heynow-io/stream-manager-api.git</url>
+        <connection>scm:git:git@github.com:heynow-io/stream-manager-api.git</connection>
+        <developerConnection>scm:git:git@github.com:heynow-io/stream-manager-api.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-heynowio-snapshots</id>
+            <name>nexus-heynowio-snapshots</name>
+            <url>https://nexus-heynowio.rhcloud.com/content/repositories/snapshots</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-heynowio-releases</id>
+            <name>nexus-heynowio-rleases</name>
+            <url>https://nexus-heynowio.rhcloud.com/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>nexus-heynowio-releases</id>
+            <name>nexus-heynowio-releases</name>
+            <url>https://nexus-heynowio.rhcloud.com/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>nexus-heynowio-snapshots</id>
+            <name>nexus-heynowio-snapshots</name>
+            <url>https://nexus-heynowio.rhcloud.com/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
