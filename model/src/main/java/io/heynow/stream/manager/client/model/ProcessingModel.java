@@ -15,7 +15,7 @@ public class ProcessingModel {
     private List<Consumer> consumers;
 
     public ProcessingModel getNextProcessingModel() {
-        if (consumers.size() == 0) {
+        if (consumers.size() <= 1) {
             throw new IllegalStateException("There are no consumers left");
         }
         List<Consumer> tail = new ArrayList<>(consumers.subList(1, consumers.size()));
