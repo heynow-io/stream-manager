@@ -17,7 +17,7 @@ public class Operator {
 
     @Id
     @GeneratedValue
-    private String id;
+    private Long id;
 
     private String name;
     private String eventSource;

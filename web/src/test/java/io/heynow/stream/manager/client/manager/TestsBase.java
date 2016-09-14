@@ -57,7 +57,7 @@ public class TestsBase {
 
     protected Operator buildOperator(String name, List<Property>... properties) {
         Operator operator = new Operator();
-        operator.setEventSource(name);
+        operator.setName(name);
         if (properties.length == 1) {
             operator.setProperties(properties[0]);
         }
