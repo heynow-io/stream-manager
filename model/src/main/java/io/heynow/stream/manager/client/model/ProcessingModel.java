@@ -1,5 +1,6 @@
 package io.heynow.stream.manager.client.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class ProcessingModel {
     private Long streamId;
     private List<Consumer> consumers;
 
+    @JsonIgnore
     public ProcessingModel getNextProcessingModel() {
         if (consumers.size() <= 1) {
             throw new IllegalStateException("There are no consumers left");
@@ -27,6 +29,7 @@ public class ProcessingModel {
         return model;
     }
 
+    @JsonIgnore
     public Consumer getCurrent() {
         return consumers.stream().findFirst().get();
     }
