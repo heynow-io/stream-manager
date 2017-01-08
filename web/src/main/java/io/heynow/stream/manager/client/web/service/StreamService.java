@@ -39,10 +39,11 @@ public class StreamService {
     }
 
     @Transactional
-    public void create(Stream stream) {
+    public Stream create(Stream stream) {
         treeService.walkTreeFromLeafs(stream.getRootNode(), nodeDao::save);
         streamDao.save(stream);
         prepareObservables(stream).forEach(observableDao::save);
+        return stream;
     }
 
     public Map<String, Object> getProperties(Long operatorId) {

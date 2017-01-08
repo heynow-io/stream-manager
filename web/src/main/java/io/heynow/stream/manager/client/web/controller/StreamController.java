@@ -22,8 +22,8 @@ public class StreamController {
     private final StreamService streamService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createStream(@RequestBody Stream stream) {
-        streamService.create(stream);
+    public Stream createStream(@RequestBody Stream stream) {
+        return streamService.create(stream);
     }
 
     @RequestMapping(method = RequestMethod.GET)
