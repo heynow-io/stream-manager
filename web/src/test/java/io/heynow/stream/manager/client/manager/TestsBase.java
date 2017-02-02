@@ -1,5 +1,6 @@
 package io.heynow.stream.manager.client.manager;
 
+import com.google.common.collect.Sets;
 import io.heynow.stream.manager.client.StreamManagerApplication;
 import io.heynow.stream.manager.client.web.domain.Node;
 import io.heynow.stream.manager.client.web.domain.Operator;
@@ -10,7 +11,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = StreamManagerApplication.class)
@@ -18,13 +21,13 @@ import java.util.List;
 public class TestsBase {
 
     protected Node buildTree() {
-        return buildNode(1L, buildOperator("mailer"), asList(
-                buildNode(2L, buildOperator("merger", asList(buildProperty("key", "foo.bar"))), asList(
-                        buildNode(30L, buildOperator("filter", asList(buildProperty("foo", ">5"))), asList(
+        return buildNode(1L, buildOperator("mailer"), Sets.newHashSet(
+                buildNode(2L, buildOperator("merger", asList(buildProperty("key", "foo.bar"))), Sets.newHashSet(
+                        buildNode(30L, buildOperator("filter", asList(buildProperty("foo", ">5"))), Sets.newHashSet(
                                 buildNode(40L, buildOperator("queue", "different"))
                         )),
-                        buildNode(31L, buildOperator("mapper"), asList(
-                                buildNode(41L, buildOperator("buffer", asList(buildProperty("time", "5"))), asList(
+                        buildNode(31L, buildOperator("mapper"), Sets.newHashSet(
+                                buildNode(41L, buildOperator("buffer", asList(buildProperty("time", "5"))), Sets.newHashSet(
                                         buildNode(5L, buildOperator("queue", "something"))
                                 ))
                         ))
@@ -33,13 +36,13 @@ public class TestsBase {
     }
 
     protected Node buildNewTree() {
-        return buildNode(null, buildOperator("mailer"), asList(
-                buildNode(null, buildOperator("merger", asList(buildProperty("key", "foo.bar"))), asList(
-                        buildNode(null, buildOperator("filter", asList(buildProperty("foo", ">5"))), asList(
+        return buildNode(null, buildOperator("mailer"), Sets.newHashSet(
+                buildNode(null, buildOperator("merger", asList(buildProperty("key", "foo.bar"))), Sets.newHashSet(
+                        buildNode(null, buildOperator("filter", asList(buildProperty("foo", ">5"))), Sets.newHashSet(
                                 buildNode(null, buildOperator("queue", "different"))
                         )),
-                        buildNode(null, buildOperator("mapper"), asList(
-                                buildNode(null, buildOperator("buffer", asList(buildProperty("time", "5"))), asList(
+                        buildNode(null, buildOperator("mapper"), Sets.newHashSet(
+                                buildNode(null, buildOperator("buffer", asList(buildProperty("time", "5"))), Sets.newHashSet(
                                         buildNode(null, buildOperator("queue", "something"))
                                 ))
                         ))
@@ -78,12 +81,14 @@ public class TestsBase {
         return property;
     }
 
-    protected Node buildNode(Long id, Operator operator, List<Node>... parents) {
+    protected Node buildNode(Long id, Operator operator) {
+        return buildNode(id, operator, Collections.emptySet());
+    }
+
+    protected Node buildNode(Long id, Operator operator, Set<Node> parents) {
         Node node = new Node();
         node.setId(id);
-        if (parents.length == 1) {
-            node.setParents(parents[0]);
-        }
+        node.setParents(parents);
         node.setOperator(operator);
         return node;
     }

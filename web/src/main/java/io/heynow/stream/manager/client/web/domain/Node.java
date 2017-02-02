@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -24,6 +24,6 @@ public class Node {
     private Operator operator;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private List<Node> parents = Collections.emptyList();
+    private Set<Node> parents = Collections.emptySet();
 
 }
